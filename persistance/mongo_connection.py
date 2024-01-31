@@ -2,16 +2,14 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from settings import Settings
 
 
-class MongoConnection:
+class MongoConnector:
     def __init__(self, settings: Settings):
         self._mongo_db = settings.db_mongo_name
         self._connection: AsyncIOMotorClient = AsyncIOMotorClient(settings.mongo_dsn)
 
-    async def get_data(self, criteria: dict) -> dict | None:
-        collection = self._connection[self.database][self.collection_name]
-        return await collection.find_one(criteria)
+    def connect(self):
+        db = self._connection.get_database(self._mongo_db)
+        await db.list_collection_names()
 
-    async def save_data(self, data: dict) -> str:
-        connection = await self.mongodb_connection_manager.get_connection()
-        result = await connection[self.database][self.collection_name].insert_one(data)
-        return result.inserted_id
+    def get_connection(self):
+        return self._connection
