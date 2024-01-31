@@ -1,8 +1,8 @@
-from os import getenv, path
+from os import path
 from pathlib import Path
 from pydantic_settings import BaseSettings
 
-base_dir = Path(__file__).parent.absolute()
+base_dir = Path(__file__).parent.parent.absolute()
 
 
 class Settings(BaseSettings):
