@@ -12,6 +12,9 @@ whatsapp-api-client-python = "^0.0.44"
 pydantic = "^2.5.3"
 pydantic-settings = "^2.1.0"
 motor = "^3.3.2"
+flake8 = "^7.0.0"
+injector = "^0.21.0"
+uvicorn = "^0.27.1"
 
 
 [build-system]

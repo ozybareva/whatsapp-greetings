@@ -11,18 +11,16 @@ class Settings(BaseSettings):
     wa_id_instance: str
     wa_api_token_instance: str
 
-    mongo_host: str = 'mongo'
+    mongo_host: str = 'localhost'
     mongo_port: int = 27017
-    mongo_user: str = ''
-    mongo_pass: str = ''
     mongo_db: str = ''
 
     @property
     def mongo_dsn(self) -> str:
         mongo_dsn = 'mongodb://{}:{}/{}'.format(
-            self.db_mongo_host,
-            self.db_mongo_port,
-            self.db_mongo_auth,
+            self.mongo_host,
+            self.mongo_port,
+            self.mongo_db
         )
         return mongo_dsn
 

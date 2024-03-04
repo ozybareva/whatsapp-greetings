@@ -7,10 +7,10 @@ class Repository:
     def __init__(
         self,
         mongodb_connection_manager: MongoConnector,
-        setting: Settings,
+        settings: Settings,
     ) -> None:
         self.mongodb_connection_manager = mongodb_connection_manager
-        self.database = setting.db_mongo_name
+        self.database = settings.mongo_db
 
     @property
     def collection_name(self) -> str:
