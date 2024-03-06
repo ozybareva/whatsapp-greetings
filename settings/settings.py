@@ -13,7 +13,11 @@ class Settings(BaseSettings):
 
     mongo_host: str = 'localhost'
     mongo_port: int = 27017
-    mongo_db: str = ''
+    mongo_db: str = 'wa'
+
+    load_schedule_second: str = '00'
+    load_schedule_minute: str = '30'
+    load_schedule_hour: str = '11'
 
     @property
     def mongo_dsn(self) -> str:
