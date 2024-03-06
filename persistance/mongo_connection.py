@@ -7,9 +7,5 @@ class MongoConnector:
         self._mongo_db = settings.mongo_db
         self._connection: AsyncIOMotorClient = AsyncIOMotorClient(settings.mongo_dsn)
 
-    async def connect(self):
-        db = self._connection.get_database(self._mongo_db)
-        await db.list_collection_names()
-
     def get_connection(self):
         return self._connection

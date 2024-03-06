@@ -17,9 +17,9 @@ class PersonRouter:
             phone_number: str
     ):
         try:
-            await self.repository.create_new_person(PersonModel(name=name, birth_date=birth_date, phone_number=phone_number))
+            await self.repository.create_new_person(
+                PersonModel(name=name, birth_date=birth_date, phone_number=phone_number))
             return JSONResponse({'Status': 'Success'})
         except Exception as exc:
             logging.error(f'Error {exc}')
             return JSONResponse({'Status': 'Error'})
-

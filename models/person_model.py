@@ -4,6 +4,6 @@ from datetime import date
 
 class PersonModel(BaseModel):
     wa_id: str | None
-    name: str
-    birth_date: date
-    phone_number: str
+    name: str | None
+    birth_date: date | None = None
+    phone_number: str | None

@@ -16,12 +16,15 @@ class Repository:
     def collection_name(self) -> str:
         raise NotImplementedError
 
-    async def get_data(self, criteria: dict) -> dict | None:
-        connection = await self.mongodb_connection_manager.get_connection()
-        collection = connection[self.database][self.collection_name]
-        return await collection.find_one(criteria)
+    async def get_data(self, criteria: dict) -> list | None:
+        connection = self.mongodb_connection_manager.get_connection()
+        cursor = connection[self.database][self.collection_name].find(criteria)
+        result = []
+        async for data in cursor:
+            result.append(data)
+        return result
 
     async def save_data(self, data: dict) -> str:
-        connection = await self.mongodb_connection_manager.get_connection()
+        connection = self.mongodb_connection_manager.get_connection()
         result = await connection[self.database][self.collection_name].insert_one(data)
         return result.inserted_id

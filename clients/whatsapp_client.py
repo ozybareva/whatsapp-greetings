@@ -10,3 +10,9 @@ class WhatsAppClient:
             idInstance=settings.wa_id_instance,
             apiTokenInstance=settings.wa_api_token_instance
         )
+
+    def get_contacts_data(self):
+        return self.restApi.serviceMethods.getContacts().data
+
+    def send_message(self, chat_id: str, message: str):
+        self.restApi.sending.sendMessage(chat_id, message)
